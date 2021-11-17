@@ -12,7 +12,9 @@ export default function Home() {
             <Description>Receba em casa um box com chás, produtos organicos, incensos e muito mais...</Description>
             <Image src={image} />
             <ContainerButtons>
-                <ButtonHome>Quero começar</ButtonHome>
+                <Link to='/sign-up' >
+                    <ButtonHome>Quero começar</ButtonHome>
+                </Link>
                 <Link to='/login'>Já sou grato</Link>
             </ContainerButtons>
         </ContainerPage>
