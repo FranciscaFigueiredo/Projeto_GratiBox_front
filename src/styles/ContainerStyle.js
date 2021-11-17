@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ContainerPage = styled.div`
     width: 95vw;
-    min-height: 90vh;
+    height: 90vh;
 
     display: flex;
     flex-direction: column;
