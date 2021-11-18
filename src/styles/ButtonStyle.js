@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-const ButtonHome = styled.div`
+const ButtonHome = styled.button`
     width: 50vw;
-    /* height: 90vh; */
 
     color: #ffffff;
     font-size: 18px;
@@ -12,17 +11,45 @@ const ButtonHome = styled.div`
     background-color:  #8c97ea;
     border-radius: 10px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    cursor: pointer;
+
+    margin: 10px auto;
+`;
+
+const ButtonRegistration = styled.button`
+    width: 60vw;
+
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: bold;
+
+    background-color:  #8c97ea;
+    border-radius: 10px;
 
     cursor: pointer;
 
     margin: 10px auto;
 `;
 
+const ButtonModal = styled.button`
+    width: 20vw;
+
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: bold;
+
+    background-color:  #8c97ea;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin: 10px auto;
+`;
 
 export {
     ButtonHome,
+    ButtonRegistration,
+    ButtonModal,
 }

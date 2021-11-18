@@ -10,6 +10,11 @@ const ContainerPage = styled.div`
     align-items: center;
 
     margin: 0 auto;
+
+    form {
+        text-align: center;
+        margin: 20px auto 0;
+    }
 `;
 
 const ContainerButtons = styled.div`
