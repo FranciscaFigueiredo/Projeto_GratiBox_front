@@ -1,9 +1,8 @@
 import { IoShieldCheckmarkSharp } from 'react-icons/io5'
 import { IconContext } from "react-icons/lib";
-import { ButtonModal } from '../styles/ButtonStyle';
 import { Message, Modal } from "../styles/ModalStyle";
 
-export default function ModalSuccess({ message, setModalSuccess }) {
+export default function ModalSuccess({ message }) {
     return (
         <Modal>
             <Message>
@@ -14,7 +13,6 @@ export default function ModalSuccess({ message, setModalSuccess }) {
             </IconContext.Provider>
                 
                 <h1>{ message }</h1>
-                {/* <ButtonModal onClick={() => setModalSuccess(false)}>OK</ButtonModal> */}
             </Message>
         </Modal>
     );

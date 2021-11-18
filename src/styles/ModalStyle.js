@@ -42,5 +42,5 @@ const Message = styled.div`
     padding: 20px 0;
   }
 `;
-// eslint-disable-next-line import/prefer-default-export
+
 export { Modal, Message };

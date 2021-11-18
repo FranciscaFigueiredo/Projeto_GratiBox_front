@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { ContainerButtons, ContainerPage } from "../styles/ContainerStyle";
+import { ContainerPage } from "../styles/ContainerStyle";
 import { PageTitle } from "../styles/TextStyle";
-import { ButtonHome, ButtonRegistration } from "../styles/ButtonStyle";
+import { ButtonRegistration } from "../styles/ButtonStyle";
 import Input from "../styles/Form/InputStyle";
 
 import Loader from "react-loader-spinner";
@@ -124,7 +124,7 @@ export default function SignUp() {
 
             {
                 modalSuccess ?
-                <ModalSuccess message={message} setModalSuccess={setModalSuccess} />
+                <ModalSuccess message={message} />
                 : ''
             }
         </ContainerPage>
