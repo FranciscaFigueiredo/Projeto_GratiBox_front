@@ -12,7 +12,11 @@ export default function ModalSuccess({ message }) {
                 </div>
             </IconContext.Provider>
                 
-                <h1>{ message }</h1>
+                {
+                    message !== '' ?
+                    <h1>{ message }</h1>
+                    : ''
+                }
             </Message>
         </Modal>
     );

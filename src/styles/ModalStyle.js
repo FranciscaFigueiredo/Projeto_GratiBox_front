@@ -4,7 +4,7 @@ const Modal = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background-color: rgba(238, 238, 238, 0.6);
+  background-color: rgba(109, 124, 228, 0.6);
 
   display: flex;
   justify-content: center;
@@ -18,8 +18,10 @@ const Modal = styled.div`
 `;
 
 const Message = styled.div`
-  width: 90vw;
-  height: 35vh;
+  min-width: 50vw;
+  max-width: 90vw;
+  min-height: 50vw;
+  max-height: 35vh;
 
   display: flex;
   flex-direction: column;
@@ -27,12 +29,14 @@ const Message = styled.div`
   align-items: center;
 
   background-color: #ffffff;
-  border: 1px solid #283d3b;
+  border: 1px solid #6D7CE4;
   border-radius: 10px;
 
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
 
   transition: all 0.4s ease 0, 3s;
+
+  padding: 20px;
 
   h1 {
     color: #283d3b;

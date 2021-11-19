@@ -44,7 +44,7 @@ export default function SignUp() {
             confirmPassword,
         })
 
-    }, [name, email, password, confirmPassword, modal]);
+    }, [name, email, password, confirmPassword, modal, modalSuccess]);
 
     function registration(event) {
         event.preventDefault();
