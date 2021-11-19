@@ -11,7 +11,18 @@ function postLogin(body) {
     return promise;
 }
 
+function getUserPlan(token) {
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    const promise = axios.get(`${api}/plan`, config);
+    return promise;
+}
+
 export {
     signUp,
     postLogin,
+    getUserPlan,
 }

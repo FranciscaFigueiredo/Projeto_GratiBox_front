@@ -9,7 +9,7 @@ import Input from "../styles/Form/InputStyle";
 import Loader from "react-loader-spinner";
 import ModalError from "../shared/ModalError";
 
-import { postLogin } from "../services/gratibox";
+import { getUserPlan, postLogin } from "../services/gratibox";
 import ModalSuccess from "../shared/ModalSuccess";
 
 export default function Login() {
@@ -35,6 +35,20 @@ export default function Login() {
 
     }, [email, password, modal]);
 
+    function redirect(token) {
+        getUserPlan(token).then((res) => {
+            if (!res.data) {
+                setTimeout(() => {
+                    navigate('/my-plan')
+                }, 2000);
+                return
+            }
+            setTimeout(() => {
+                navigate('/plans')
+            }, 2000)
+        });
+    }
+
     function login(event) {
         event.preventDefault();
         setDisable(true);
@@ -43,17 +57,15 @@ export default function Login() {
             <Loader
                 type="ThreeDots"
                 color="#ffffff"
-                height={46}
-                width={46}
+                height={30}
+                width={30}
                 timeout={2000} //2 secs
             />
         );
         postLogin(userData).then((res) => {
             setMessage('');
             setModalSuccess(true);
-            setTimeout(() => {
-                navigate('/plans')
-            }, 2000)
+            redirect(res.data);
         }).catch((err) => {
             console.error();
             setButtonName('Cadastrar')
@@ -87,7 +99,7 @@ export default function Login() {
             <PageTitle>Bem vindo ao GratiBox</PageTitle>
 
             <form onSubmit={login}>
-                <Input type='email' placeholder='Email' disabled={disable} required value={email} onChange={(event) => (setEmail(event.target.value))} />
+                <Input compare={true} type='email' placeholder='Email' disabled={disable} required value={email} onChange={(event) => (setEmail(event.target.value))} />
                 <Input compare={true} type='password' placeholder='Senha' disabled={disable} required value={password} onChange={(event) => (setPassword(event.target.value))} />
                 <ButtonRegistration type='submit' >{ buttonName }</ButtonRegistration>
             </form>
