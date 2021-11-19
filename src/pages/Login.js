@@ -9,7 +9,7 @@ import Input from "../styles/Form/InputStyle";
 import Loader from "react-loader-spinner";
 import ModalError from "../shared/ModalError";
 
-import { signUp } from "../services/gratibox";
+import { postLogin } from "../services/gratibox";
 import ModalSuccess from "../shared/ModalSuccess";
 
 export default function Login() {
@@ -35,7 +35,52 @@ export default function Login() {
 
     }, [email, password, modal]);
 
-    
+    function login(event) {
+        event.preventDefault();
+        setDisable(true);
+
+        setButtonName(
+            <Loader
+                type="ThreeDots"
+                color="#ffffff"
+                height={46}
+                width={46}
+                timeout={2000} //2 secs
+            />
+        );
+        postLogin(userData).then((res) => {
+            setMessage('');
+            setModalSuccess(true);
+            setTimeout(() => {
+                navigate('/plans')
+            }, 2000)
+        }).catch((err) => {
+            console.error();
+            setButtonName('Cadastrar')
+            setPassword('');
+            setDisable(false);
+
+            if(err.response.status === 400) {
+                setMessage('Digite dados válidos');
+                setModal(true);
+            }
+
+            if(err.response.status === 401) {
+                setEmail("");
+                setMessage('Email ou senha incorretos');
+                setModal(true);
+            }
+
+            if (err.response.status === 500) {
+                setMessage("Servidor fora de área, tente novamente mais tarde");
+                setButtonName("Cadastrar");
+                setModal(true);
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000)
+            }
+        });
+    }
     
     return (
         <ContainerPage>
