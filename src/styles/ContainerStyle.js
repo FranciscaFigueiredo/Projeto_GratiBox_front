@@ -15,6 +15,13 @@ const ContainerPage = styled.div`
         text-align: center;
         margin: 20px auto 0;
     }
+
+    a {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 21px;
+    }
 `;
 
 const ContainerButtons = styled.div`
