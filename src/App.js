@@ -5,17 +5,24 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login";
 import Plans from "./pages/Plans";
+import { UserContext } from "./contexts/UserContext";
+import { useState } from "react";
 
 function App() {
+	const [name, setName] = useState('')
+	const [email, setLogin] = useState('')
+
     return (
 		<BrowserRouter>
-			<GlobalStyle />
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/sign-up' element={<SignUp />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/plans' element={<Plans />} />
-			</Routes>
+			<UserContext.Provider value={{ name, setName, email, setLogin }} >
+				<GlobalStyle />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/sign-up' element={<SignUp />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/plans' element={<Plans />} />
+				</Routes>
+			</UserContext.Provider>
 		</BrowserRouter>
     );
 }

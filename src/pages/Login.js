@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { ContainerPage } from "../styles/ContainerStyle";
 import { PageTitle } from "../styles/TextStyle";
@@ -9,11 +9,13 @@ import Input from "../styles/Form/InputStyle";
 import Loader from "react-loader-spinner";
 import ModalError from "../shared/ModalError";
 
-import { getUserPlan, postLogin } from "../services/gratibox";
+import { getUserInfo, getUserPlan, postLogin } from "../services/gratibox";
 import ModalSuccess from "../shared/ModalSuccess";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { setName, setLogin } = useContext(UserContext)
 
     const [modal, setModal] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
@@ -36,6 +38,10 @@ export default function Login() {
     }, [email, password, modal]);
 
     function redirect(token) {
+        getUserInfo(token).then((res) => {
+            setName(res.data.name);
+            setLogin(res.data.email)
+        })
         getUserPlan(token).then((res) => {
             if (!res.data) {
                 setTimeout(() => {
