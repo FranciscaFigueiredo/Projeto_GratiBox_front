@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const ContainerPage = styled.div`
-    width: 95vw;
-    height: 90vh;
+    max-width: 95vw;
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -10,6 +10,8 @@ const ContainerPage = styled.div`
     align-items: center;
 
     margin: 0 auto;
+
+    overflow: 0;
 
     form {
         text-align: center;
@@ -26,7 +28,7 @@ const ContainerPage = styled.div`
 
 const ContainerButtons = styled.div`
     width: 100vw;
-    height: 20vh;
+    min-height: 25vh;
 
     background-color: #4d65a8;
     display: flex;
@@ -34,11 +36,7 @@ const ContainerButtons = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin: 0 auto;
-
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    margin: 0;
 
     a {
         color: #ffffff;
@@ -48,7 +46,21 @@ const ContainerButtons = styled.div`
     }
 `;
 
+const ContainerPlans = styled.div`
+    margin: 20px 0;
+    width: 100vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: scroll;
+
+    z-index: 100;
+`;
+
 export {
     ContainerPage,
     ContainerButtons,
+    ContainerPlans,
 }
