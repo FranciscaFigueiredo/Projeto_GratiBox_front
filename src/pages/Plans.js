@@ -5,11 +5,18 @@ import image from '../assets/image04.jpg'
 import { PlanData, PlansPageTitle } from "../styles/PlanStyle";
 import { ButtonPages } from "../styles/ButtonStyle";
 import PlanCard from "../components/PlanCard";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { getPlans } from "../services/gratibox";
 
 export default function Plans() {
-    const { name } = useContext(UserContext);
+    const { name, token } = useContext(UserContext);
+    const [plans, setPlans] = useState([]);
+
+    useEffect(() => {
+        getPlans(token).then((res) => setPlans(res.data)).catch((err) => console.error())
+    }, [])
+    console.log(plans)
 
     return (
         <ContainerPage>
@@ -18,12 +25,7 @@ export default function Plans() {
                 <Description>Você ainda não assinou um plano, que tal começar agora?</Description>
             </PlansPageTitle>
             <ContainerPlans>
-                <PlanCard />
-                <PlanData>
-                    <ImagePlan src={image} />
-                    <PlanDescription>Você recebe um box por semana. Ideal para quem quer exercer a gratidão todos os dias.</PlanDescription>
-                    <ButtonPages>Assinar</ButtonPages>
-                </PlanData>
+                {plans.map((plan, index) => <PlanCard key={index} index={index} name={plan.name} period={plan.period} description={plan.description} />)}
             </ContainerPlans>
         </ContainerPage>
     );

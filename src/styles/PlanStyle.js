@@ -12,11 +12,9 @@ const PlansPageTitle = styled.div`
 `;
 
 const PlanData = styled.div`
-    margin: 20px auto;
     max-width: 80vw;
-
-    /* height: 45vh; */
-    margin-right: 20px;
+    
+    margin: 20px 10px;
 
     background-color: #e5cdb3;
     border-radius: 25px;

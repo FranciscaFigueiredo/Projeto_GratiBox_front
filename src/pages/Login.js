@@ -15,7 +15,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
     const navigate = useNavigate();
-    const { setName, setLogin } = useContext(UserContext)
+    const { setName, setLogin, setToken } = useContext(UserContext);
 
     const [modal, setModal] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
@@ -38,6 +38,7 @@ export default function Login() {
     }, [email, password, modal]);
 
     function redirect(token) {
+        console.log('redirect')
         getUserInfo(token).then((res) => {
             setName(res.data.name);
             setLogin(res.data.email)
@@ -53,11 +54,14 @@ export default function Login() {
                 navigate('/plans')
             }, 2000)
         });
+
+        return
     }
 
     function login(event) {
         event.preventDefault();
         setDisable(true);
+        console.log('login')
 
         setButtonName(
             <Loader
@@ -69,8 +73,11 @@ export default function Login() {
             />
         );
         postLogin(userData).then((res) => {
+        console.log('then')
+
             setMessage('');
             setModalSuccess(true);
+            setToken(res.data)
             redirect(res.data);
         }).catch((err) => {
             console.error();
@@ -78,18 +85,18 @@ export default function Login() {
             setPassword('');
             setDisable(false);
 
-            if(err.response.status === 400) {
+            if(err.response?.status === 400) {
                 setMessage('Digite dados válidos');
                 setModal(true);
             }
 
-            if(err.response.status === 401) {
+            if(err.response?.status === 401) {
                 setEmail("");
                 setMessage('Email ou senha incorretos');
                 setModal(true);
             }
 
-            if (err.response.status === 500) {
+            if (err.response?.status === 500) {
                 setMessage("Servidor fora de área, tente novamente mais tarde");
                 setButtonName("Cadastrar");
                 setModal(true);

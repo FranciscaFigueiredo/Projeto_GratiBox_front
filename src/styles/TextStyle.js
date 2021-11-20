@@ -16,6 +16,8 @@ const Description = styled.h3`
 `;
 
 const PlanDescription = styled.h3`
+    height: 10vh;
+    
     color: #4D65A8;
     font-size: 18px;
     font-weight: bold;

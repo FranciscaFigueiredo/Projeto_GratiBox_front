@@ -11,6 +11,8 @@ const ContainerPage = styled.div`
 
     margin: 0 auto;
 
+    overflow: 0;
+
     form {
         text-align: center;
         margin: 20px auto 0;
@@ -45,7 +47,7 @@ const ContainerButtons = styled.div`
 `;
 
 const ContainerPlans = styled.div`
-    margin: 20px auto;
+    margin: 20px 0;
     width: 100vw;
 
     display: flex;
