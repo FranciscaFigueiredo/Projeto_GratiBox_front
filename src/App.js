@@ -15,9 +15,6 @@ function App() {
 	const [token, setToken] = useState('');
 
 	const [plan, setPlan] = useState({});
-
-	console.log({ name, email, token });
-	console.log({ plan });
 	
     return (
 		<BrowserRouter>

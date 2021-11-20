@@ -1,9 +1,7 @@
 import { ContainerPage, ContainerPlans } from "../styles/ContainerStyle";
-import { ImagePlan } from "../styles/Image";
-import { Description, PageTitle, PlanDescription } from "../styles/TextStyle";
-import image from '../assets/image04.jpg'
-import { PlanData, PlansPageTitle } from "../styles/PlanStyle";
-import { ButtonPages } from "../styles/ButtonStyle";
+import { Description, PageTitle } from "../styles/TextStyle";
+import { PlansPageTitle } from "../styles/PlanStyle";
+
 import PlanCard from "../components/PlanCard";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
@@ -15,8 +13,7 @@ export default function Plans() {
 
     useEffect(() => {
         getPlans(token).then((res) => setPlans(res.data)).catch((err) => console.error())
-    }, [])
-    console.log(plans)
+    }, [token]);
 
     return (
         <ContainerPage>
