@@ -48,8 +48,25 @@ const ButtonModal = styled.button`
     margin: 10px auto;
 `;
 
+const ButtonPages = styled.button`
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 38px;
+    font-weight: bold;
+
+    background-color:  #8c97ea;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin: 10px auto;
+
+    padding: 0 10px;
+`;
+
 export {
     ButtonHome,
     ButtonRegistration,
     ButtonModal,
+    ButtonPages,
 }

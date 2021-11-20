@@ -8,14 +8,22 @@ const PageTitle = styled.h1`
     margin: 30px auto 20px;
 `;
 
-const Description = styled.h1`
+const Description = styled.h3`
     color: #ffffff;
     font-size: 18px;
     font-weight: 300;
     text-align: center;
 `;
 
+const PlanDescription = styled.h3`
+    color: #4D65A8;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+`;
+
 export { 
     PageTitle,
     Description,
+    PlanDescription
 };

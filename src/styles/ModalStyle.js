@@ -29,7 +29,7 @@ const Message = styled.div`
   align-items: center;
 
   background-color: #ffffff;
-  border: 1px solid #6D7CE4;
+  border: 1px solid #4D65A8;
   border-radius: 10px;
 
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
