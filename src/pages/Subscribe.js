@@ -23,10 +23,10 @@ export default function Subscribe() {
     const { plan, subscribe, setSubscribe } = useContext(PlanContext);
 
     const [products, setProducts] = useState([])
-    const [data, setData] = useState('Segunda');
+    const [data, setData] = useState('');
     const today = dayjs().add(8, 'day').format('YYYY-MM-DD')
     const dayMax = dayjs().add(1, 'month').format('YYYY-MM-DD')
-    const [day, setDay] = useState(today);
+    const [day, setDay] = useState('');
 
     const options = [
         { value: 'Segunda', label: 'Segunda' },
@@ -37,10 +37,8 @@ export default function Subscribe() {
     ]
 
     useEffect(() => {
-        if (plan.period === 7) {
-            setDay(data)
-        }
-    }, [products, data, plan]);
+        setData(day)
+    }, [products, day]);
     
     function choiceProducts(event) {
         if(!products.includes(event.target.value)) {
@@ -51,6 +49,8 @@ export default function Subscribe() {
         }
     }
 
+    console.log(subscribe)
+    console.log(data)
     return (
         <ContainerPage>
             <PlansPageTitle>
@@ -72,12 +72,11 @@ export default function Subscribe() {
                             : (
                             <Select
                                 width='65vw'
-                                style={{width: '65vw'}}
                                 onFocus={false}
-                                onChange={(event) => (setData(event.options))}
+                                onChange={(event) => setDay(event.value)}
                                 options={options}
                                 isLoading={options.length === 0}
-                                placeholder="Selecione uma categoria..."
+                                placeholder="Selecione um dia..."
                             />
                             )
                         }
@@ -108,7 +107,7 @@ export default function Subscribe() {
                     <ButtonPages onClick={() => {
                         setSubscribe({
                             plan,
-                            day,
+                            data,
                             products,
                         })
                         navigate('/address');
