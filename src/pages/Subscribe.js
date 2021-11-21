@@ -41,16 +41,12 @@ export default function Subscribe() {
             setDay(data)
         }
     }, [products, data, plan]);
-    console.log(plan);
-    console.log(subscribe);
-
+    
     function choiceProducts(event) {
         if(!products.includes(event.target.value)) {
-            console.log(event.target.value)
             setProducts([...products, `${event.target.value}`])
         }
         if(products.includes(event.target.value)) {
-            console.log(event.target.value)
             setProducts(products.filter((prod) => prod !== event.target.value))
         }
     }
