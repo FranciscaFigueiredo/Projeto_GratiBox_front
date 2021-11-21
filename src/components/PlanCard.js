@@ -20,7 +20,7 @@ export default function PlanCard({ index, name, period, description }) {
     }
     
     return (
-        <PlanData>
+        <PlanData type='plans'>
             <ImagePlan src={image} />
             <PlanDescription>{description}</PlanDescription>
             <ButtonPages onClick={() => {

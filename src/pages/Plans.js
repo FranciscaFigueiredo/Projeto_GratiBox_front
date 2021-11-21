@@ -6,10 +6,13 @@ import PlanCard from "../components/PlanCard";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getPlans } from "../services/gratibox";
+import { LoginValidation } from "../login";
 
 export default function Plans() {
-    const { name, token } = useContext(UserContext);
+    const { name } = useContext(UserContext);
     const [plans, setPlans] = useState([]);
+
+    const token = LoginValidation();
 
     useEffect(() => {
         getPlans(token).then((res) => setPlans(res.data)).catch((err) => console.error())

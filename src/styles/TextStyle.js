@@ -16,7 +16,9 @@ const Description = styled.h3`
 `;
 
 const PlanDescription = styled.h3`
-    height: 10vh;
+    height: ${(props) => props.type === 'subscribe' ? '20px' : '10vh'};
+
+    margin-left: 5px;
     
     color: #4D65A8;
     font-size: 18px;
@@ -24,8 +26,19 @@ const PlanDescription = styled.h3`
     text-align: center;
 `;
 
+const ProductsCheck = styled.div`
+    height: 20px;
+    
+    color: #4D65A8;
+    font-size: 18px;
+    text-align: justify;
+
+    margin-bottom: 10px;
+`;
+
 export { 
     PageTitle,
     Description,
-    PlanDescription
+    PlanDescription,
+    ProductsCheck,
 };

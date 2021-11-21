@@ -38,7 +38,6 @@ export default function Login() {
     }, [email, password, modal]);
 
     function redirect(token) {
-        console.log('redirect')
         getUserInfo(token).then((res) => {
             setName(res.data.name);
             setLogin(res.data.email)
@@ -61,7 +60,6 @@ export default function Login() {
     function login(event) {
         event.preventDefault();
         setDisable(true);
-        console.log('login')
 
         setButtonName(
             <Loader
@@ -73,10 +71,10 @@ export default function Login() {
             />
         );
         postLogin(userData).then((res) => {
-        console.log('then')
-
             setMessage('');
             setModalSuccess(true);
+            const user = JSON.stringify(res.data);
+            sessionStorage.setItem("user", user);
             setToken(res.data)
             redirect(res.data);
         }).catch((err) => {
