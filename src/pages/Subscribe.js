@@ -4,7 +4,6 @@ import { PlanData, PlansPageTitle, ProductTypes, SubscribeData } from "../styles
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { getPlans } from "../services/gratibox";
 import { ImagePlan } from "../styles/Image";
 import { PlanContext } from "../contexts/PlanContext";
 
@@ -12,13 +11,16 @@ import image from '../assets/image03.jpg'
 import Select from "react-select";
 import dayjs from "dayjs";
 import { LoginValidation } from "../login";
+import { ButtonPages } from "../styles/ButtonStyle";
+import { useNavigate } from "react-router-dom";
 
 export default function Subscribe() {
+    const navigate = useNavigate();
     const { name } = useContext(UserContext);
 
-    const token = LoginValidation();
+    LoginValidation();
     
-    const { plan } = useContext(PlanContext);
+    const { plan, subscribe, setSubscribe } = useContext(PlanContext);
 
     const [products, setProducts] = useState([])
     const [data, setData] = useState('Segunda');
@@ -35,10 +37,12 @@ export default function Subscribe() {
     ]
 
     useEffect(() => {
-        // const today = dayjs()
-    }, [products]);
+        if (plan.period === 7) {
+            setDay(data)
+        }
+    }, [products, data, plan]);
     console.log(plan);
-    console.log({day, products});
+    console.log(subscribe);
 
     function choiceProducts(event) {
         if(!products.includes(event.target.value)) {
@@ -47,7 +51,7 @@ export default function Subscribe() {
         }
         if(products.includes(event.target.value)) {
             console.log(event.target.value)
-            setProducts(products.filter((prod) => prod != event.target.value))
+            setProducts(products.filter((prod) => prod !== event.target.value))
         }
     }
 
@@ -71,28 +75,16 @@ export default function Subscribe() {
                                 onChange={(event) => (setDay(event.target.value))} required />
                             : (
                             <Select
-                                onFocus={false}
-                                onChange={(event) => (setData(event.target.options))}
                                 width='65vw'
+                                style={{width: '65vw'}}
+                                onFocus={false}
+                                onChange={(event) => (setData(event.options))}
                                 options={options}
                                 isLoading={options.length === 0}
                                 placeholder="Selecione uma categoria..."
                             />
                             )
                         }
-                        
-
-                        
-
-                        {/* <label>
-                        <select value={data} onChange={(event) => (setData(event.target.value)) }>
-                            <option value="Segunda">Segunda</option>
-                            <option value="Terça">Terça</option>
-                            <option value="Quarta">Quarta</option>
-                            <option value="Quinta">Quinta</option>
-                            <option value="Sexta">Sexta</option>
-                        </select>
-                        </label> */}
                     </SubscribeData>
                     <br />
                     <SubscribeData type='check'>
@@ -117,6 +109,14 @@ export default function Subscribe() {
                             </ProductsCheck>
                         </ProductTypes>
                     </SubscribeData>
+                    <ButtonPages onClick={() => {
+                        setSubscribe({
+                            plan,
+                            day,
+                            products,
+                        })
+                        navigate('/address');
+                    }} >Assinar</ButtonPages>
                 </form>
             </PlanData>
         </ContainerPage>

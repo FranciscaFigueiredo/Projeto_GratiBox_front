@@ -16,11 +16,12 @@ function App() {
 	const [token, setToken] = useState('');
 
 	const [plan, setPlan] = useState({});
+	const [subscribe, setSubscribe] = useState({});
 	
     return (
 		<BrowserRouter>
 			<UserContext.Provider value={{ name, setName, email, setLogin, token, setToken }} >
-				<PlanContext.Provider value={{ plan, setPlan }} >
+				<PlanContext.Provider value={{ plan, setPlan, subscribe, setSubscribe }} >
 					<GlobalStyle />
 					<Routes>
 						<Route path='/' element={<Home />} />
