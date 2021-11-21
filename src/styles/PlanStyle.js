@@ -16,17 +16,61 @@ const PlanData = styled.div`
     
     margin: 20px 10px;
 
-    background-color: #e5cdb3;
+    background-color: ${(props) => props.type === 'subscribe' ? '#ffffff' : '#e5cdb3'};
     border-radius: 25px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+`;
 
+const SubscribeData = styled.div`
+    width: 65vw;
+    height: ${(props) => props.type === 'check' ? '' : '5vh'};
+    
+    margin: 0 0 10px;
+
+    background-color: rgba(224, 209, 237, 0.62); //${(props) => props.type === 'subscribe' ? '#rgba(224, 209, 237, 0.62)' : ''};
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    input {
+        /* width: 65vw; */
+        background-color: rgba(224, 209, 237, 0);
+    }
+`;
+
+const ProductTypes = styled.div`
+    width: 60vw;
+    /* height: 5vh; */
+    
+    margin: 0 5px 10px;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+        margin-top: 10px;
+    }
+
+    label {
+        margin-left: 5px;
+        margin-top: 10px;
+    }
 `;
 
 export {
     PlansPageTitle,
     PlanData,
+    SubscribeData,
+    ProductTypes,
 }
