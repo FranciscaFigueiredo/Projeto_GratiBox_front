@@ -31,8 +31,8 @@ const SubscribeData = styled.div`
     
     margin: 0 0 10px;
 
-    background-color: rgba(224, 209, 237, 0.62); //${(props) => props.type === 'subscribe' ? '#rgba(224, 209, 237, 0.62)' : ''};
-    border-radius: 5px;
+    background-color: rgba(224, 209, 237, 0.62);
+    border-radius: 5px; 
 
     display: flex;
     flex-direction: column;
@@ -40,14 +40,12 @@ const SubscribeData = styled.div`
     align-items: flex-start;
 
     input {
-        /* width: 65vw; */
-        background-color: rgba(224, 209, 237, 0);
+        background-color: none  ;
     }
 `;
 
 const ProductTypes = styled.div`
     width: 60vw;
-    /* height: 5vh; */
     
     margin: 0 5px 10px;
 
@@ -68,9 +66,31 @@ const ProductTypes = styled.div`
     }
 `;
 
+const Address = styled.div`
+    width: 65vw;
+    
+    margin: 0 auto 10px;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* input {
+        margin-top: 10px;
+    }
+
+    label {
+        margin-left: 5px;
+        margin-top: 10px;
+    } */
+`;
+
 export {
     PlansPageTitle,
     PlanData,
     SubscribeData,
     ProductTypes,
+    Address,
 }
