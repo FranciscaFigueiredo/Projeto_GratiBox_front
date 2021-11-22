@@ -51,6 +51,15 @@ function getStates(token) {
   return promise;
 }
 
+function toSign(body, token) {
+  const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+  };
+  const promise = axios.post(`${api}/to-sign`, body, config);
+  return promise;
+}
 
 export {
     signUp,
@@ -59,4 +68,5 @@ export {
     getUserInfo,
     getPlans,
     getStates,
+    toSign,
 }

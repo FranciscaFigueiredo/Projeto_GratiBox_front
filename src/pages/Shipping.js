@@ -1,9 +1,10 @@
+/* eslint-disable */
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import Select from 'react-select'
 import { ContainerPage } from "../styles/ContainerStyle";
-import { Address, PlanData, PlansPageTitle, SubscribeData } from "../styles/PlanStyle";
-import { Description, PageTitle, PlanDescription } from "../styles/TextStyle";
+import { Address, PlanData, PlansPageTitle } from "../styles/PlanStyle";
+import { Description, PageTitle } from "../styles/TextStyle";
 import image from '../assets/image03.jpg'
 import { ImagePlan } from "../styles/Image";
 import { ButtonPages } from "../styles/ButtonStyle";
@@ -11,24 +12,26 @@ import { PlanContext } from "../contexts/PlanContext";
 import { useNavigate } from "react-router";
 import { InputAddress } from "../styles/Form/InputStyle";
 import { useEffect } from "react";
-import { getStates } from "../services/gratibox";
+import { getStates, toSign } from "../services/gratibox";
 import { LoginValidation } from "../login";
 import ModalError from "../shared/ModalError";
+import ModalSuccess from "../shared/ModalSuccess";
+import Loader from "react-loader-spinner";
 
 export default function Shipping() {
     const navigate = useNavigate();
-    const { name, setAddress } = useContext(UserContext);
+    const { name, address, setAddress } = useContext(UserContext);
     const token = LoginValidation();
-    const { subscribe } = useContext(PlanContext);
+    const { subscribe, setSubscribe } = useContext(PlanContext);
 
-    const [options, setOptions] = useState([])
+    const options = [];
+
+    const [buttonName, setButtonName] = useState("Finalizar");
+    const [disable, setDisable] = useState(false);
 
     const [modal, setModal] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
     const [message, setMessage] = useState(1);
-
-    const [buttonName, setButtonName] = useState("Finalizar");
-    const [disable, setDisable] = useState(false);
 
     const [completeName, setCompleteName] = useState("");
     const [street, setStreet] = useState("");
@@ -42,6 +45,7 @@ export default function Shipping() {
         cep,
         city,
         state,
+        token
     })
 
     useEffect(() => {
@@ -64,19 +68,42 @@ export default function Shipping() {
                 })
             })
         }
-    }, [])
+    }, [state])
     
 
     console.log(options)
 
     function checkout(event) {
         event.preventDefault();
+
+        setButtonName(
+            <Loader
+                type="ThreeDots"
+                color="#ffffff"
+                height={30}
+                width={30}
+                timeout={2000} //2 secs
+            />
+        );
+
+        setDisable(true)
+
+        setSubscribe({...subscribe, ...address});
         
         if (!Number(cep)) {
             setMessage("CEP inválido");
             setModal(true);
             setCep('');
         }
+
+        toSign(subscribe, token).then((res) => {
+            console.log(res.data);
+            setMessage('');
+            setModalSuccess(true);
+            setTimeout(() => {
+                navigate('/my-plan')
+            }, 2000)
+        })
     }
 
     return (
@@ -110,7 +137,9 @@ export default function Shipping() {
                 </PlanData>
                 
                 <ButtonPages type='submit' onClick={() => {
+                    setCep(cep.replace('-', '').replace('.', ''))
                     setAddress({
+                        street,
                         cep,
                         city,
                         state,
@@ -121,6 +150,12 @@ export default function Shipping() {
             {
                 modal ?
                 <ModalError message={message} setModal={setModal} />
+                : ''
+            }
+
+            {
+                modalSuccess ?
+                <ModalSuccess message={message} setModal={setModal} />
                 : ''
             }
         </ContainerPage>
