@@ -20,7 +20,7 @@ function App() {
 	const [plan, setPlan] = useState({});
 	const [subscribe, setSubscribe] = useState({});
     console.log(subscribe)
-	
+	console.log(address)
     return (
 		<BrowserRouter>
 			<UserContext.Provider value={{ name, setName, email, setLogin, token, setToken, address, setAddress }} >

@@ -40,7 +40,8 @@ const SubscribeData = styled.div`
     align-items: flex-start;
 
     input {
-        background-color: none  ;
+        padding-left: 5px;
+        background-color: rgba(224, 209, 237, 0);
     }
 `;
 
