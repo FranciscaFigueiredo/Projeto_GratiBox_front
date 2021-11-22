@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ContainerPage } from "../styles/ContainerStyle";
 import { PageTitle } from "../styles/TextStyle";
 import { ButtonRegistration } from "../styles/ButtonStyle";
-import Input from "../styles/Form/InputStyle";
+import { Input } from "../styles/Form/InputStyle";
 
 import Loader from "react-loader-spinner";
 import ModalError from "../shared/ModalError";

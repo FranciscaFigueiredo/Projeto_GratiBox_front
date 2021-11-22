@@ -41,10 +41,32 @@ function getPlans(token) {
     return promise;
 }
 
+function getStates(token) {
+  const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+  };
+  const promise = axios.get(`${api}/states`, config);
+  return promise;
+}
+
+function toSign(body, token) {
+  const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+  };
+  const promise = axios.post(`${api}/to-sign`, body, config);
+  return promise;
+}
+
 export {
     signUp,
     postLogin,
     getUserPlan,
     getUserInfo,
     getPlans,
+    getStates,
+    toSign,
 }

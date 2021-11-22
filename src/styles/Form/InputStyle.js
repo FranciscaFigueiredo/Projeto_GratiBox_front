@@ -22,4 +22,29 @@ const Input = styled.input`
     }
 `;
 
-export default Input;
+const InputAddress = styled.input`
+    width: ${(props) => props.field === 'city' ? '40vw' : (props.field === 'state' ? '21vw' : '65vw')};
+    height: 6vh;
+
+    color: #000000;
+    font-size: 18px;
+    font-weight: 500;
+
+    margin-bottom: 10px;
+    padding: 0 5px;
+
+    background-color: rgba(224, 209, 237, 0.62);
+    border-radius: 5px;
+
+    outline: 0;
+
+    ::placeholder {
+        color: #4D65A8;
+        font-weight: bold;
+    }
+`;
+
+export {
+    Input,
+    InputAddress,
+}

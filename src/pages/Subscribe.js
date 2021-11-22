@@ -20,7 +20,7 @@ export default function Subscribe() {
 
     LoginValidation();
     
-    const { plan, subscribe, setSubscribe } = useContext(PlanContext);
+    const { plan, setSubscribe } = useContext(PlanContext);
 
     const [products, setProducts] = useState([])
     const [data, setData] = useState('');
@@ -49,21 +49,19 @@ export default function Subscribe() {
         }
     }
 
-    console.log(subscribe)
-    console.log(data)
     return (
         <ContainerPage>
             <PlansPageTitle>
                 <PageTitle>Bom te ver por aqui, {name}.</PageTitle>
                 <Description>“Agradecer é arte de atrair coisas boas”</Description>
             </PlansPageTitle>
-            <PlanData type='subscribe'>
-                <ImagePlan src={image} />
-                <SubscribeData>
-                    <PlanDescription type='subscribe'>{plan.name}</PlanDescription>
-                </SubscribeData>
-                <form onSubmit={choiceProducts}>
-                        
+            <form onSubmit={choiceProducts}>
+                <PlanData type='subscribe'>
+                    <ImagePlan src={image} />
+                    <SubscribeData>
+                        <PlanDescription type='subscribe'>{plan.name}</PlanDescription>
+                    </SubscribeData>
+                    
                     <SubscribeData>
                         {
                             plan.period === 30 ?
@@ -104,16 +102,17 @@ export default function Subscribe() {
                             </ProductsCheck>
                         </ProductTypes>
                     </SubscribeData>
-                    <ButtonPages onClick={() => {
-                        setSubscribe({
-                            plan,
-                            data,
-                            products,
-                        })
-                        navigate('/address');
-                    }} >Assinar</ButtonPages>
-                </form>
-            </PlanData>
+                    
+                </PlanData>
+                <ButtonPages onClick={() => {
+                    setSubscribe({
+                        plan,
+                        data,
+                        products,
+                    })
+                    navigate('/address');
+                }} >Próximo</ButtonPages>
+            </form>
         </ContainerPage>
     );
 }
